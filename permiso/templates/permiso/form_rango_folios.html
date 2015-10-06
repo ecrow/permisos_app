@@ -1,0 +1,34 @@
+<h3 class="tituloDescripcion">Asignación de rangos</h3>
+<hr/>
+<form action="" id="rango_foliosu" method='post'>{% csrf_token %}
+<fieldset>
+<div class="row fila">
+	<div class="col-md-4">
+		<label class="cd-label" for="usuario_rango">Usuarios</label>
+		<input type="text" class="ancho100" name="usuario_rango" id="usuario_rango" validationMessage="Dato obligatorio" required>
+	</div>
+</div>	
+<div class="row fila">
+	<div class="col-md-4">
+		<label class="cd-label" for="folioini_rango">Número de folio inicial</label>
+		<input type="text" class="ancho100" name="folioini_rango" id="folioini_rango" validationMessage="Dato obligatorio" required>
+		<span class="k-invalid-msg" data-for="folioini_rango"></span>
+	</div>
+	
+	<div class="col-md-4">
+		<label class="cd-label" for="foliofin_rango">Número de folio final</label>
+		<input type="text"  class="ancho100" name="foliofin_rango" id="foliofin_rango" validationMessage="Dato obligatorio" required>
+		<span class="k-invalid-msg" data-for="foliofin_rango"></span>
+	</div>
+	
+</div>
+
+<div class="cd-box">
+	<button type="submit" class="btn btn-info" name="submit_rango"> <i class="fa fa-share"></i> Asignar</button>
+	<button type="reset" class="btn btn-danger" ><i class="fa fa-times"></i> Cancelar</button>
+	
+</div>
+</fieldset>
+</form>
+
+

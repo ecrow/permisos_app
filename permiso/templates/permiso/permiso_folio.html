@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+{%load static from staticfiles%}
+
+{%block morecss %}
+	<link rel="stylesheet" href="{% static 'css/kendo.common.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/kendo.office365.min.css' %}">
+{% endblock %}
+{%block nav_up%}
+	{%include "nav_up.html"%}
+{%endblock%}
+{%block content %}
+	<main class="cd-main-content">
+		{%include "nav_left.html"%}
+		<div class="content-wrapper">
+			{% if permiso%}
+				{%include "permiso/datos_permiso.html"%}
+			{% endif %}
+			{%if propietario%}
+				{%include "permiso/datos_propietario.html"%}
+			{%endif%}
+			{% if vehiculo%}
+				{%include "permiso/datos_vehiculo.html"%}
+			{% endif %}
+			
+			<div class="cd-box">
+				<button class="btn btn-info" name="imprime_permiso"><i class="fa fa-print"></i> Imprimir permiso</button>
+				<button class="btn btn-info" name="imprime_recibo"><i class="fa fa-file-pdf-o"></i> Imprimir permiso</button>
+				
+			</div>
+			
+			{%if error%}
+				<div class="error-form-message">
+					<p><i class="fa fa-exclamation-circle"></i> {{error}}</p>
+				</div>
+			{%endif%}
+		</div> <!-- .content-wrapper -->
+	</main> 
+{%endblock%}
+{% block jsScripts%}
+<script src="{% static 'js/kendo.all.min.js' %}"></script>
+{%endblock%}

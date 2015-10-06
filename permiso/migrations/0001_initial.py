@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Folios_Oficina',
+            name='Folios_oficina',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('folio_inicial', models.IntegerField()),
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             name='Linea',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('descripcion', models.CharField(max_length=50)),
+                ('descripcion', models.CharField(max_length=100)),
                 ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
             ],
         ),
@@ -55,16 +55,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('descripcion', models.CharField(max_length=100)),
                 ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
-                ('idLinea', models.ForeignKey(to='permiso.Linea')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Modelo',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('descripcion', models.CharField(max_length=100)),
-                ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
-                ('idMarca', models.ForeignKey(to='permiso.Marca')),
             ],
         ),
         migrations.CreateModel(
@@ -87,7 +77,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Perfil_Usuario',
+            name='Perfil_usuario',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('apellido_materno', models.CharField(max_length=50)),
@@ -100,6 +90,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('folio', models.IntegerField()),
                 ('fecha_capturo', models.DateTimeField(default=django.utils.timezone.now)),
+                ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
             ],
         ),
         migrations.CreateModel(
@@ -108,11 +99,10 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('nombre', models.CharField(max_length=500)),
                 ('apellido_paterno', models.CharField(max_length=50)),
-                ('apellido_materno', models.CharField(max_length=50)),
+                ('apellido_materno', models.CharField(max_length=50, null=True, blank=True)),
                 ('correo_electronico', models.EmailField(max_length=254, null=True, blank=True)),
-                ('codigo_postal', models.IntegerField(null=True, blank=True)),
                 ('domicilio', models.TextField(null=True, blank=True)),
-                ('telefono', models.CharField(max_length=10)),
+                ('telefono', models.CharField(max_length=10, null=True, blank=True)),
                 ('fecha_capturo', models.DateTimeField(default=django.utils.timezone.now)),
                 ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
                 ('idMunicipio', models.ForeignKey(to='permiso.Municipio')),
@@ -127,7 +117,15 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Usuarios_Oficina',
+            name='Tipo_vehiculo',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('descripcion', models.CharField(max_length=50)),
+                ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Usuarios_oficina',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
@@ -144,7 +142,8 @@ class Migration(migrations.Migration):
                 ('fecha_capturo', models.DateTimeField(default=django.utils.timezone.now)),
                 ('status', models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')])),
                 ('anio', models.ForeignKey(to='permiso.Anio')),
-                ('idModelo', models.ForeignKey(to='permiso.Modelo')),
+                ('idLinea', models.ForeignKey(to='permiso.Linea')),
+                ('idPropietario', models.ForeignKey(to='permiso.Propietario')),
                 ('usuario_capturo', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
@@ -174,11 +173,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='permiso',
-            name='idVigencia',
-            field=models.ForeignKey(to='permiso.Vigencia'),
-        ),
-        migrations.AddField(
-            model_name='permiso',
             name='oficina_capturo',
             field=models.ForeignKey(to='permiso.Oficina'),
         ),
@@ -186,6 +180,16 @@ class Migration(migrations.Migration):
             model_name='permiso',
             name='usuario_capturo',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+        ),
+        migrations.AddField(
+            model_name='marca',
+            name='idTipoVehiculo',
+            field=models.ForeignKey(to='permiso.Tipo_vehiculo'),
+        ),
+        migrations.AddField(
+            model_name='linea',
+            name='idMarca',
+            field=models.ForeignKey(to='permiso.Marca'),
         ),
         migrations.AddField(
             model_name='folios_oficina',

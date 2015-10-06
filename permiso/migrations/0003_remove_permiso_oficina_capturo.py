@@ -7,13 +7,12 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('permiso', '0001_initial'),
+        ('permiso', '0002_folios_usuario'),
     ]
 
     operations = [
-        migrations.AddField(
+        migrations.RemoveField(
             model_name='permiso',
-            name='status',
-            field=models.CharField(default=b'A', max_length=1, choices=[(b'A', b'Activo'), (b'C', b'Cancelado')]),
+            name='oficina_capturo',
         ),
     ]

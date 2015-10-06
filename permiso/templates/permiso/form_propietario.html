@@ -1,0 +1,57 @@
+<h3 class="tituloDescripcion">Datos del propietario</h3>
+<hr/>
+<form action="" id="datos_propietario" method='post'>{% csrf_token %}
+<fieldset>
+<div class="row fila">
+	<div class="col-md-4">
+		<label class="cd-label" for="name_propietario">Nombre</label>
+		<input type="text" name="name_propietario" id="name_propietario" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="lname_propietario">Apellido Paterno</label>
+		<input type="text" name="lname_propietario" id="lname_propietario" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="tname_propietario">Apellido Materno</label>
+		<input type="text" name="tname_propietario" id="tname_propietario" >
+	</div>
+</div>
+<hr/>
+<div class="row ">
+	<div class="col-md-4">
+		<label class="cd-label" for="sexo_propietario">Sexo</label>
+		<input type="text" class="ancho100" name="sexo_propietario" id="sexo_propietario" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="email_propietario">Correo Electrónico</label>
+		<input type="email" name="email_propietario" data-email-msg="No es un formato de correo valido" placeholder="Ejemplo: usuario@empresa.com"id="email_propietario" >
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="telefono_propietario">Teléfono</label>
+		<input class="ancho100" type="text" name="telefono_propietario" id="telefono_propietario" >
+	</div>
+</div>
+<hr/>
+<div class="row ">
+	<div class="col-md-3">
+		<label class="cd-label"  for="estado_propietario">Estado</label>
+		<input class="ancho100" type="text" name="estado_propietario" id="estado_propietario" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-3">
+		<label class="cd-label" for="municipio_propietario">Municipio</label>
+		<input class="ancho100" type="text" name="municipio_propietario" id="municipio_propietario" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-6">
+		<label class="cd-label" for="direccion_propietario">Dirección</label>
+		<input class="user" type="text" name="direccion_propietario" id="direccion_propietario" >
+	</div>	
+</div>
+
+<hr/>
+
+<div class="cd-box">
+	<button class="btn btn-danger" ><i class="fa fa-times"></i> Cancelar</button>
+	<button type="submit" class="btn btn-info" name="submit_propietario"> <i class="fa fa-arrow-right"></i> Siguiente</button>
+</div>
+</fieldset>
+</form>

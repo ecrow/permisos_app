@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
-
+#encoding:utf-8
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+DEFAULT_CHARSET = 'utf-8'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'permisos_sitio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +90,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-Mx'
 
 TIME_ZONE = 'America/Mexico_City'
 
@@ -105,3 +106,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'assets'),
+   )
+
+
+
+#LOGIN URL AND LOGIN REDIRECT
+LOGIN_URL='/login'
+LOGIN_REDIRECT_URL='/'

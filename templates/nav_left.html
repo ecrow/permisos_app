@@ -1,0 +1,42 @@
+<nav class="cd-side-nav is-fixed">
+	<ul>
+		<li class="cd-label">Registro</li>
+		<li class="has-children notifications ">
+			<a href="#0"><i class="fa fa-car"></i> Registro</a>
+			<ul>
+				<li><a href="{% url 'vregistro_propietario' %}"><i class="fa fa-plus"></i> Registro de folios</a></li>
+			</ul>
+		</li>
+	</ul>
+	<ul>
+		<li class="cd-label">Consulta</li>
+		<li class="has-children ">
+			<a href="#0"><i class="fa fa-search"></i> Consulta</a>
+			<ul>
+				<li><a href="#0">General</a></li>
+				<li><a href="#0">Por datos del vehículo</a></li>
+				<li><a href="#0">Por datos del propietario</a></li>
+			</ul>
+		</li>
+	</ul>
+	{% if user.is_superuser %}
+	<ul>
+		<li class="cd-label">Administración</li>
+		<li class="has-children ">
+			<a href="#0"><i class="fa fa-users"></i> Usuarios</a>
+
+			<ul>
+				<li><a href="#0"><i class="fa fa-users"></i> Todos los usuarios</a></li>
+				<li><a href="{% url 'usuario_nuevo' %}"><i class="fa fa-user-plus"></i> Agregar usuario</a></li>
+			</ul>
+		</li>
+		<li class="has-children">
+			<a href="#0"><i class="fa fa-list-alt"></i> Catálogos</a>
+			<ul>
+				<li><a href="{% url 'rango_folios' %}"><i class="fa fa-list-ol"></i> Rango de folios</a></li>
+			</ul>
+		</li>
+	</ul>
+	{% endif %}
+	
+</nav>

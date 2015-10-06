@@ -1,0 +1,31 @@
+<h3 class="tituloDescripcion">Datos del propietario</h3>
+<hr/>
+<div class="row fila">
+	<div class="col-md-5">
+		<h2 class="textoField">{{propietario.nombre}} {{propietario.apellido_paterno}} {{propietario.apellido_materno}}</h2>
+		<h3 class="etiqueta">Nombre</h3>
+	</div>
+	<div class="col-md-2">
+		<h2 class="textoField">{{propietario.sexo}}</h2>
+		<h3 class="etiqueta">Sexo</h3>
+	</div>
+	<div class="col-md-5">
+		<h2 class="textoField">{{propietario.correo_electronico}}</h2>
+		<h3 class="etiqueta">Correo Electrónico</h3>
+	</div>
+	
+</div>
+<hr/>
+<div class="row ">
+	<div class="col-md-3">
+		<h2 class="textoField">{{propietario.telefono|phone2numeric}}</h2>
+		<h3 class="etiqueta">Teléfono</h3>
+	</div>
+	<div class="col-md-9">
+		<h2 class="textoField">{{propietario.domicilio}} {{propietario.idMunicipio}}, {{propietario.idMunicipio.idEstado}} </h2>
+		<h3 class="etiqueta">Domicilio</h3>
+	</div>
+</div>
+
+
+

@@ -1,0 +1,45 @@
+<h3 class="tituloDescripcion">Datos del vehículo</h3>
+<hr/>
+<form action="" id="datos_vehiculo" method='post'>{% csrf_token %}
+<fieldset>
+<div class="row fila">
+	<div class="col-md-4">
+		<label class="cd-label" for="serie_vehiculo">Número de serie</label>
+		<input type="text" name="serie_vehiculo" id="serie_vehiculo" maxlength="17" validationMessage="Dato obligatorio" required>
+	</div>
+</div>	
+<div class="row fila">
+	<div class="col-md-4">
+		<label class="cd-label" for="tipo_vehiculo">Tipo de vehículo</label>
+		<input type="text" class="ancho100" name="tipo_vehiculo" id="tipo_vehiculo" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="marca_vehiculo">Marca</label>
+		<input type="text" class="ancho100" name="marca_vehiculo" id="marca_vehiculo" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="linea_vehiculo">Linea</label>
+		<input type="text" class="ancho100" name="linea_vehiculo" id="linea_vehiculo" validationMessage="Dato obligatorio" required>
+	</div>
+</div>
+<hr/>
+<div class="row ">
+	<div class="col-md-4">
+		<label class="cd-label" for="modelo_vehiculo">Modelo</label>
+		<input type="text" class="ancho100" name="modelo_vehiculo" id="modelo_vehiculo" validationMessage="Dato obligatorio" required>
+	</div>
+	<div class="col-md-4">
+		<label class="cd-label" for="color_vehiculo">Color</label>
+		<input type="text" name="color_vehiculo"  id="color_vehiculo" >
+	</div>
+	
+</div>
+<hr/>
+
+<div class="cd-box">
+	
+	<button class="btn btn-danger" ><i class="fa fa-times"></i> Cancelar</button>
+	<button type="submit" class="btn btn-info" name="submit_vehiculo"> <i class="fa fa-arrow-right"></i> Finalizar</button>
+</div>
+</fieldset>
+</form>
