@@ -1,0 +1,20 @@
+<h3 class="tituloDescripcion">Vehículos registrados para este propietario</h3>
+<hr/>
+<table class="table table-responsive busqueda">    
+  <thead>
+    <tr>
+      <th>Número de serie</th>
+      <th>Tipo de vehículo</th>
+      <th>Vehículo</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for vehiculo in vehiculos_propietario%}
+      <tr>
+        <th scope="row"><a href="{% url 'vehiculo' vehiculo.id %}">{{vehiculo.numero_serie}}</a></th>
+        <td><h3>{{vehiculo.idLinea.idMarca.idTipoVehiculo}}</h3></td>
+        <td><h3>{{vehiculo.idLinea.idMarca}} {{vehiculo.idLinea}} </h3></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

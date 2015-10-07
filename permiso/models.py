@@ -100,7 +100,7 @@ class Marca(models.Model):
 	descripcion=models.CharField(max_length=100)
 	status=models.CharField(max_length=1,choices=status,default='A')
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.descripcion
 
 
@@ -140,7 +140,7 @@ class Vehiculo(models.Model):
 	usuario_capturo=models.ForeignKey(User)
 	status=models.CharField(max_length=1,choices=status,default='A')
 
-	def __str__(self):
+	def __unicode__(self):
 		return '%s' % (self.numero_serie)
 
 class Permiso(models.Model):

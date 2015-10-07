@@ -103,11 +103,6 @@ h1.icono{
     padding: 3px 0;
 }
 
-
-
-
-
-
 .cd-main-content::before {
   /* never visible - used to check MQ in jQuery */
   display: none;
@@ -1088,7 +1083,7 @@ Form
   padding: 16px;
 }
 
-.error-form-message, .success-form-message{
+.error-form-message, .success-form-message, .info-form-message{
   margin-top: 10px;
 }
 
@@ -1103,7 +1098,15 @@ Form
 .success-form-message p {
     background: #3f99df;
     color: #ffffff;
-    font-size: 1.4rem;
+    font-size: 1.7rem;
+    border-radius: .25em;
+    padding: 16px;
+}
+
+.info-form-message p {
+    background: #3f99df;
+    color: #ffffff;
+    font-size: 1.7rem;
     border-radius: .25em;
     padding: 16px;
 }
@@ -1364,4 +1367,15 @@ h3.templateDropdown{
   font-size: 20px;
   font-weight: 700;
   padding: 7px 0; 
+}
+
+table.busqueda > tbody > tr > th{
+    padding: 10px 5px;
+    font-size: 2rem;
+
+}
+
+table.busqueda > tbody > tr > td{
+    padding: 10px 5px;
+    font-size: 2rem;
 }

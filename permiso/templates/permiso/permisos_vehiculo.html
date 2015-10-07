@@ -1,0 +1,23 @@
+<h3 class="tituloDescripcion">Permisos registrados para este vehículo</h3>
+<hr/>
+<table class="table table-responsive busqueda">    
+  <thead>
+    <tr>
+      <th>Folio</th>
+      <th>Expedición</th>
+      <th>Vigencia</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for permiso in permisos_vehiculo%}
+      <tr>
+        <th scope="row"><a href="{% url 'vpermiso_folio' permiso.idPropietario permiso.idVehiculo permiso.idPermiso%}">{{permiso.folio}}</a></th>
+        <td><h3>{{permiso.expedicion}}</h3></td>
+        <td><h3>{{permiso.vigencia}}</h3></td>
+        <td>
+          <a href="{% url 'imprime_folio' permiso.idPermiso%}"><i class="fa fa-print"></i></a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

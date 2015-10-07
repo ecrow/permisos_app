@@ -12,27 +12,14 @@
 	<main class="cd-main-content">
 		{%include "nav_left.html"%}
 		<div class="content-wrapper">
-			{% if permiso%}
-				{%include "permiso/datos_permiso.html"%}
-			{% endif %}
-			{%if propietario%}
-				{%include "permiso/datos_propietario.html"%}
-			{%endif%}
-			{% if vehiculo%}
-				{%include "permiso/datos_vehiculo.html"%}
-			{% endif %}
-			
-			<div class="cd-box">
-				<a href="{% url 'imprime_folio' permiso.id%}" class="btn btn-info" name="imprime_permiso"><i class="fa fa-print"></i> Imprimir permiso</a>
-				<button class="btn btn-info" name="imprime_recibo"><i class="fa fa-file-pdf-o"></i> Imprimir recibo</button>
-				
-			</div>
-			
+			<h3 class="tituloDescripcion">Server error</h3>
+			<hr/>
 			{%if error%}
 				<div class="error-form-message">
 					<p><i class="fa fa-exclamation-circle"></i> {{error}}</p>
 				</div>
 			{%endif%}
+			<hr/>
 		</div> <!-- .content-wrapper -->
 	</main> 
 {%endblock%}
