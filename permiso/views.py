@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.http import JsonResponse,HttpResponseRedirect,HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User,Group
+from django.db.models import Q 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter, A4,landscape
 from reportlab.lib.units import inch,cm
@@ -382,8 +383,26 @@ def usuarios(request):
 		return render(request,'permiso/error.html',{'error',e.message})
 
 
+@login_required
+def busqueda_propietario(request):
+	try:
+		if request.method=='GET':
+			if 'busqueda_propietario' in request.GET:
+				propietario_nombre=request.GET['busqueda_propietario']
+				propietarios=Propietario.objects.all()
+
+				for term in propietario_nombre.split():
+					propietarios = propietarios.filter(Q(nombre__icontains = term) | Q(apellido_paterno__icontains = term) | Q(apellido_materno__icontains = term))
+
+				if propietarios:
+					return render(request,'permiso/busqueda_propietario.html',{'propietarios':propietarios})
+				else:
+					return render(request,'permiso/busqueda_propietario.html',{'msg':'El criterio de búsqueda no encontro resultados'})
+			else:
+				return render(request,'permiso/busqueda_propietario.html',{})	
+		else:
+			return render(request,'permiso/busqueda_propietario.html',{})
 
 
-	
-
-		
+	except Exception, e:
+		return render(request,'permiso/error.html',{'error':e.message})

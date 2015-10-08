@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^rango/folios/usuario/(?P<usuario_pk>\d+)/$',views.folios_usuario,name="folios_usuario"),
     url(r'^usuario/nuevo/$',views.usuario_nuevo,name="usuario_nuevo"),
     url(r'^busqueda/folio/$',views.busqueda_folio,name="busqueda_folio"),
+    url(r'^busqueda/propietario/$',views.busqueda_propietario,name="busqueda_propietario"),
     url(r'^imprime/permiso/(?P<permiso_pk>\d+)/$',views.imprime_folio, name="imprime_folio"),
  	url(r'^datos/vehiculo/(?P<vehiculo_pk>\d+)/$',views.vehiculo, name="vehiculo"),
     url(r'^datos/propietario/(?P<propietario_pk>\d+)/$',views.propietario, name="propietario"),

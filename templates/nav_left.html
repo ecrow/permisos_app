@@ -15,11 +15,11 @@
 			<ul>
 				<li><a href="#0">General</a></li>
 				<li><a href="#0">Por datos del vehículo</a></li>
-				<li><a href="#0">Por datos del propietario</a></li>
+				<li><a href="{%url 'busqueda_propietario'%}">Por datos del propietario</a></li>
 			</ul>
 		</li>
 	</ul>
-	{% if user.is_superuser %}
+	{% if user.is_superuser or user.is_staff %}
 	<ul>
 		<li class="cd-label">Administración</li>
 		<li class="has-children ">

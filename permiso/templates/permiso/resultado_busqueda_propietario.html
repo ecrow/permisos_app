@@ -1,0 +1,24 @@
+<h3 class="tituloDescripcion">Resultados de la búsqueda</h3>
+<hr/>
+<table class="table table-responsive busqueda">    
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Domicilio</th>
+      <th>Teléfono</th>
+      <th>Correo electrónico</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for propietario in propietarios%}
+      <tr>
+        <td><a href="{% url 'propietario' propietario.id%}">{{propietario.nombre}} {{propietario.apellido_paterno}} {{propietario.apellido_materno}}</a></td>
+        <td>{{propietario.domicilio}} {{propietario.idMunicipio}}, {{propietario.idMunicipio.idEstado}}</td>
+        <td>{{propietario.telefono|default:"No especificado"}}</td>
+        <td>{{propietario.correo_electronico|default:"No especificado"}}</td>
+        <td></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
