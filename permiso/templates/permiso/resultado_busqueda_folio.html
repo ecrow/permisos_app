@@ -3,19 +3,20 @@
 <table class="table table-responsive busqueda">    
   <thead>
     <tr>
-      <th>Folio</th>
+      <th class="texto-centrado">Folio</th>
       <th>Tipo de vehículo</th>
       <th>Vehículo</th>
       <th>No. de Serie</th>
       <th>Propietario</th>
       <th>Expedición</th>
       <th>Vigencia</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {% for permiso in lista_permisos%}
       <tr>
-        <th scope="row"><a href="{% url 'vpermiso_folio' permiso.idPropietario permiso.idVehiculo permiso.idPermiso%}">{{permiso.folio}}</a></th>
+        <td class="texto-centrado"><a href="{% url 'vpermiso_folio' permiso.idPropietario permiso.idVehiculo permiso.idPermiso%}">{{permiso.folio}}</a></td>
         <td><h3>{{permiso.tipoVehiculo}}</h3></td>
         <td>{{permiso.vehiculo}}</td>
         <td><a href="{% url 'vehiculo' permiso.idVehiculo %}">{{permiso.serie}}</a></td>

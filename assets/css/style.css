@@ -1369,6 +1369,10 @@ h3.templateDropdown{
   padding: 7px 0; 
 }
 
+table {
+    background-color: #f0f1f4;
+}
+
 table.busqueda > tbody > tr > th{
     padding: 10px 5px;
     font-size: 2rem;
@@ -1379,3 +1383,43 @@ table.busqueda > tbody > tr > td{
     padding: 10px 5px;
     font-size: 2rem;
 }
+
+.table-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.table-options > li:first-child {
+    margin-left: 0;
+}
+
+.table-options > li {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.table-options > li > a {
+    color: #9fa8bc;
+    font-size: 15px;
+    line-height: 0;
+    
+}
+
+.table > thead > tr > th, .table > tfoot > tr > th {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    vertical-align: bottom;
+    border-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    background-color: #d8dce3;
+    color: #3b4354;
+    font-size: 13px;
+}
+
+.texto-centrado {
+    text-align: center;
+}
+

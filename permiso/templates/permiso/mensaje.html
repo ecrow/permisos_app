@@ -12,11 +12,10 @@
 	<main class="cd-main-content">
 		{%include "nav_left.html"%}
 		<div class="content-wrapper">
-			{%if error%}
-				<div class="errorPanel">
-					<h1>Error</h1>
-					<h3>Server internal error</h3>
-					<h4>Descripción del error: {{error}}</h4>
+			{%if msg%}
+				<div class="msgPanel">
+					<h1><i class="fa fa-info-circle"></i></h1>
+					<h3>{{msg}}</h3>
 				</div>
 			{%endif%}
 			<hr/>

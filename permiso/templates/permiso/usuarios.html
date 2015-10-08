@@ -12,13 +12,9 @@
 	<main class="cd-main-content">
 		{%include "nav_left.html"%}
 		<div class="content-wrapper">
-			{%if error%}
-				<div class="errorPanel">
-					<h1>Error</h1>
-					<h3>Server internal error</h3>
-					<h4>Descripción del error: {{error}}</h4>
-				</div>
-			{%endif%}
+			{% if usuarios%}
+				{%include "permiso/listado_usuarios.html"%}
+			{% endif %}
 			<hr/>
 		</div> <!-- .content-wrapper -->
 	</main> 

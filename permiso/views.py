@@ -271,11 +271,11 @@ def busqueda_folio(request):
 			if lista_permisos:
 				return render(request,'permiso/busqueda_folio.html',{'lista_permisos':lista_permisos})
 			else:
-				return render(request,'permiso/busqueda_folio.html',{'msg':'El criterio de búsqueda no encontro resultados'})
+				return render(request,'permiso/mensaje.html',{'msg':'El criterio de búsqueda no encontro resultados'})
 
 
 	except Exception, e:
-		return render(request,'permiso/busqueda_folio.html',{'error':e.message,'e':e})
+		return render(request,'permiso/error.html',{'error':e.message,'e':e})
 
 
 
@@ -373,7 +373,13 @@ def propietario(request,propietario_pk):
 
 	
 
-
+@login_required
+def usuarios(request):
+	try:
+		usuarios=User.objects.all()
+		return render(request,'permiso/usuarios.html',{'usuarios':usuarios})
+	except Exception, e:
+		return render(request,'permiso/error.html',{'error',e.message})
 
 
 
