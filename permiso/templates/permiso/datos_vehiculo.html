@@ -1,11 +1,16 @@
 <h3 class="tituloDescripcion">Datos del vehículo</h3>
 <hr/>
 <div class="row fila">
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<h2 class="textoField">{{vehiculo.numero_serie}}</h2>
 		<h3 class="etiqueta">Número de serie</h3>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-2">
+		
+		<h2 class="textoField">{{vehiculo.idLinea.idMarca.idTipoVehiculo}}</h2>
+		<h3 class="etiqueta">Tipo de Vehículo</h3>
+	</div>
+	<div class="col-md-3">
 		
 		<h2 class="textoField">{{vehiculo.idLinea.idMarca}} {{vehiculo.idLinea}}</h2>
 		<h3 class="etiqueta">Vehículo</h3>

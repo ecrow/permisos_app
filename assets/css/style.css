@@ -1381,7 +1381,7 @@ table.busqueda > tbody > tr > th{
 
 table.busqueda > tbody > tr > td{
     padding: 10px 5px;
-    font-size: 2rem;
+
 }
 
 .table-options {
@@ -1421,5 +1421,12 @@ table.busqueda > tbody > tr > td{
 
 .texto-centrado {
     text-align: center;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 10px 15px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ffffff;
 }
 

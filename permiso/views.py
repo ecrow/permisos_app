@@ -13,8 +13,10 @@ from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.barcode.qr import QrCodeWidget 
 from reportlab.graphics import renderPDF
 import datetime
+import operator
 from .models import *
 from .objetos import *
+
 
 @login_required
 def registro(request):
@@ -406,3 +408,71 @@ def busqueda_propietario(request):
 
 	except Exception, e:
 		return render(request,'permiso/error.html',{'error':e.message})
+
+
+@login_required
+def busqueda_general(request):
+	try:
+		if request.method=='GET':
+			query_strings=request.GET.keys()
+			if query_strings:
+
+				predicados=[]
+
+				fecha_inicial=request.GET['fecha_ini']
+				fecha_final=request.GET['fecha_fin']
+
+				if fecha_inicial and fecha_final:
+					fecha_inicial=datetime.datetime.strptime(fecha_inicial,'%d/%m/%Y')
+					fecha_final=datetime.datetime.strptime(fecha_final,'%d/%m/%Y').replace(hour=23,minute=59)
+					predicados.append(('fecha_capturo__range',(fecha_inicial,fecha_final)))
+				else:
+					fecha_inicial=datetime.datetime.strptime('01/01/2000','%d/%m/%Y')
+					fecha_final=timezone.now().replace(hour=23,minute=59)
+					predicados.append(('fecha_capturo__range',(fecha_inicial,fecha_final)))
+
+				if 'tipo_vehiculo' in request.GET:
+					tipo_vehiculo=request.GET['tipo_vehiculo']
+					if tipo_vehiculo:
+						predicados.append(('idVehiculo__idLinea__idMarca__idTipoVehiculo__id',tipo_vehiculo))
+						if 'marca_vehiculo' in request.GET:
+							marca_vehiculo=request.GET['marca_vehiculo']
+							if marca_vehiculo:
+								predicados.append(('idVehiculo__idLinea__idMarca__id',marca_vehiculo))
+								if 'linea_vehiculo' in request.GET:
+									linea_vehiculo=request.GET['linea_vehiculo']
+									if linea_vehiculo:
+										predicados.append(('idVehiculo__idLinea__id',linea_vehiculo))
+
+				q_list = [Q(x) for x in predicados]
+				permisos=Permiso.objects.filter(reduce(operator.and_, q_list))
+
+				lista_permisos=[]
+			
+				for permiso in permisos:
+					permiso_objeto=Permiso_folio()
+					
+					vigencia=permiso.fecha_capturo+datetime.timedelta(days=30)
+					permiso_objeto.idPermiso=permiso.id
+					permiso_objeto.folio=permiso.folio
+					permiso_objeto.idTipoVehiculo=permiso.idVehiculo.idLinea.idMarca.idTipoVehiculo.id
+					permiso_objeto.tipoVehiculo=permiso.idVehiculo.idLinea.idMarca.idTipoVehiculo
+					permiso_objeto.idVehiculo=permiso.idVehiculo.id
+					permiso_objeto.vehiculo='{} {}'.format(permiso.idVehiculo.idLinea.idMarca,permiso.idVehiculo.idLinea)
+					permiso_objeto.serie=permiso.idVehiculo.numero_serie
+					permiso_objeto.idPropietario=permiso.idVehiculo.idPropietario.id
+					permiso_objeto.propietario=permiso.idVehiculo.idPropietario
+					permiso_objeto.expedicion='{}'.format(permiso.fecha_capturo.strftime('%d/%m/%Y'))
+					permiso_objeto.vigencia='{}'.format(vigencia.strftime('%d/%m/%Y'))
+
+					lista_permisos.append(permiso_objeto)
+
+				if lista_permisos:
+					return render(request,'permiso/busqueda_general.html',{'lista_permisos':lista_permisos})
+				else:
+					return render(request,'permiso/busqueda_general.html',{'msg':'El criterio de búsqueda no encontro resultados'})
+			else:
+				return render(request,'permiso/busqueda_general.html',{})
+	except Exception, e:
+		return render(request,'permiso/error.html',{'error':e.message})
+

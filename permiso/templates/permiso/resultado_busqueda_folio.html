@@ -17,12 +17,19 @@
     {% for permiso in lista_permisos%}
       <tr>
         <td class="texto-centrado"><a href="{% url 'vpermiso_folio' permiso.idPropietario permiso.idVehiculo permiso.idPermiso%}">{{permiso.folio}}</a></td>
-        <td><h3>{{permiso.tipoVehiculo}}</h3></td>
+        <td>
+          {% if permiso.idTipoVehiculo == 1%}
+            <i class="fa fa-car"></i> {{permiso.tipoVehiculo}}
+          {% elif permiso.idTipoVehiculo == 2%}
+            <i class="fa fa-motorcycle"></i> {{permiso.tipoVehiculo}}
+          {%endif%}
+
+        </td>
         <td>{{permiso.vehiculo}}</td>
         <td><a href="{% url 'vehiculo' permiso.idVehiculo %}">{{permiso.serie}}</a></td>
         <td><a href="{% url 'propietario' permiso.idPropietario%}">{{permiso.propietario}}</a></td>
-        <td>{{permiso.expedicion}}</td>
-        <td>{{permiso.vigencia}}</td>
+        <td><i class="fa fa-calendar"></i> {{permiso.expedicion}}</td>
+        <td><i class="fa fa-calendar"></i> {{permiso.vigencia}}</td>
         <td>
           <a href="{% url 'imprime_folio' permiso.idPermiso%}"><i class="fa fa-print"></i></a>
         </td>

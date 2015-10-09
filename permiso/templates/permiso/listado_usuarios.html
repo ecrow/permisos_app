@@ -6,22 +6,24 @@
       <th>Nombre de usuario</th>
       <th>Nombre</th>
       <th>Correo electrónico</th>
-      <th>Activo</th>
+      <th class="texto-centrado">Activo</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     {% for usuario in usuarios%}
       <tr>
-        <td><h3><i class="fa fa-user"></i> {{usuario.username}}</h3></td>
-        <td><h3>{{usuario.get_full_name}}</h3></td>
-        <td><h3>{{usuario.email|default:"No especificado"}}</h3></td>
-        <td>
-          <h3>
-            {{usuario.is_active}}
-          </h3>
+        <td><i class="fa fa-user"></i> {{usuario.username}}</td>
+        <td>{{usuario.get_full_name}}</td>
+        <td><i class="fa fa-envelope-o"></i> {{usuario.email|default:"No especificado"}}</td>
+        <td class="texto-centrado">
+            {% if usuario.is_active %}
+              <i class="fa fa-check"></i>
+            {% else %}
+              <i class="fa fa-ban"></i>
+            {% endif %}
         </td>
-        <td>
+        <td class="texto-centrado">
           <ul class="table-options">
               <li><a href=""><i class="fa fa-pencil"></i></a></li>
               <li><a href=""><i class="fa fa-times"></i></a></li>

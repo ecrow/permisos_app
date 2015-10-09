@@ -12,7 +12,13 @@
     {% for vehiculo in vehiculos_propietario%}
       <tr>
         <th scope="row"><a href="{% url 'vehiculo' vehiculo.id %}">{{vehiculo.numero_serie}}</a></th>
-        <td><h3>{{vehiculo.idLinea.idMarca.idTipoVehiculo}}</h3></td>
+        <td>
+          {% if vehiculo.idLinea.idMarca.idTipoVehiculo.id == 1%}
+            <i class="fa fa-car"></i> {{vehiculo.idLinea.idMarca.idTipoVehiculo}}
+          {% elif vehiculo.idLinea.idMarca.idTipoVehiculo.id == 2%}
+            <i class="fa fa-motorcycle"></i> {{vehiculo.idLinea.idMarca.idTipoVehiculo}}
+          {%endif%}
+        </td>
         <td><h3>{{vehiculo.idLinea.idMarca}} {{vehiculo.idLinea}} </h3></td>
       </tr>
     {% endfor %}

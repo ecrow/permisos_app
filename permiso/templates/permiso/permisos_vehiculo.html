@@ -13,8 +13,8 @@
     {% for permiso in permisos_vehiculo%}
       <tr>
         <td class="texto-centrado"><a href="{% url 'vpermiso_folio' permiso.idPropietario permiso.idVehiculo permiso.idPermiso%}">{{permiso.folio}}</a></td>
-        <td><h3>{{permiso.expedicion}}</h3></td>
-        <td><h3>{{permiso.vigencia}}</h3></td>
+        <td><i class="fa fa-calendar"></i> {{permiso.expedicion}}</td>
+        <td><i class="fa fa-calendar"></i> {{permiso.vigencia}}</td>
         <td>
           <a href="{% url 'imprime_folio' permiso.idPermiso%}"><i class="fa fa-print"></i></a>
         </td>
